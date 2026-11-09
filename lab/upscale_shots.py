@@ -1,6 +1,6 @@
 """HERESY 1876b (Viktor 29.10.2026: «если апскейлер на финал прикрутишь, то с ним сможем вытянуть клип и в 2-4K»; «SeedVR2 обе 3B и 7B просчитай по ресурсам
 и прогони 7B на предмет на OOM под 24GB VRAM»): the Videographer's shots made larger by SeedVR2 (lab/seedvr2rt, models/seedvr2). The shots asked for are
-dealt among the free cards (by their frames), one job a card: lab/upscale_job.py runs SeedVR2 once over the card's shots (the model loaded once, kept for
+dealt among the free cards (by their frames), one job a card: lab/shot_upscale_job.py runs SeedVR2 once over the card's shots (the model loaded once, kept for
 all of them) in the Artist's environment and leaves done.json; collect() sets each into its shot (NAME.shots/STEM-upRES.mp4, the shot's «video_up»), a
 shot whose video changed meanwhile keeps it aside. 7B sharp with 16 of its blocks in RAM (20 GB of a card at 1080p, 21 at 1440p) or 3B (18.6 GB)."""
 import json
@@ -16,7 +16,7 @@ import videographer as vg
 
 HERE = Path(__file__).resolve().parent
 RT = HERE / "seedvr2rt"
-JOB = HERE / "upscale_job.py"
+JOB = HERE / "shot_upscale_job.py"
 MODELS = {"7b": {"dit": "seedvr2_ema_7b_sharp_fp16.safetensors", "swap": 16, "label": "SeedVR2 7B sharp"},
           "3b": {"dit": "seedvr2_ema_3b_fp16.safetensors", "swap": 0, "label": "SeedVR2 3B"}}
 RES = (1080, 1440)
